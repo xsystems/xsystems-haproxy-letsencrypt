@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+if [ -n "${PROXY_STAGING_DISABLED}" ]; then
+  sed -i "/^staging/d" /usr/local/etc/letsencrypt/letsencrypt.ini
+fi
+
 if [ -n "${PROXY_CERTIFICATE_RENEWAL_INTERVAL}" ]; then
   echo "${PROXY_CERTIFICATE_RENEWAL_INTERVAL} certbot renew --config /usr/local/etc/letsencrypt/letsencrypt.ini" | crontab -
 else
