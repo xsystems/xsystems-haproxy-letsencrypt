@@ -4,7 +4,7 @@ Docker service that acts as a (layer 4 / layer 7) proxy and makes use of Let’s
 
 ## Use the Image
 
-1. Create a HAProxy configuration file called `haproxy.cfg`, in which your domain certificate path is: `/usr/local/etc/haproxy/certs/${PROXY_DOMAIN}.pem`
+1. Create a HAProxy configuration file called `haproxy.cfg`, in which a domain certificate path is: `/usr/local/etc/haproxy/certs/{YOUR_DOMAIN_HERE}.pem`
 2. Create a Dockerfile:
 
         FROM xsystems/haproxy-letsencrypt:latest
@@ -16,12 +16,12 @@ Docker service that acts as a (layer 4 / layer 7) proxy and makes use of Let’s
 
 4. Before using the just created image, set the following environment variables:
 
-| Environment Variable                | Default Value | Description                                           | Required  |
-| :---------------------------------- | :------------ | :---------------------------------------------------- | :-------: |
-| PROXY_DOMAIN                        |               | A domain your machine can be reached at.              |     ✔     |
-| PROXY_EMAIL                         |               | An email for error reporting.                         |           |
-| PROXY_CERTIFICATE_RENEWAL_INTERVAL  | 0 7,19 * * *  | How often should be checked for certificate expiry.   |           |
-| PROXY_STAGING_DISABLED              | false         | Disable staging mode i.e. issue trusted certificates. |           |
+| Environment Variable                | Default Value | Description                                                           | Required  |
+| :---------------------------------- | :------------ | :-------------------------------------------------------------------- | :-------: |
+| PROXY_DOMAINS                       |               | A **space separated** list of domains your machine can be reached at. |     ✔     |
+| PROXY_EMAIL                         |               | An email for error reporting.                                         |           |
+| PROXY_CERTIFICATE_RENEWAL_INTERVAL  | 0 7,19 * * *  | How often should be checked for certificate expiry.                   |           |
+| PROXY_STAGING_DISABLED              | false         | Disable staging mode i.e. issue trusted certificates.                 |           |
 
 
 ## Build the Image
