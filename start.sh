@@ -15,6 +15,8 @@ if [ -n "${PROXY_EMAIL}" ]; then
   echo "email = ${PROXY_EMAIL}" >> /usr/local/etc/letsencrypt/letsencrypt.ini
 fi
 
-certbot certonly --config /usr/local/etc/letsencrypt/letsencrypt.ini --domains ${PROXY_DOMAINS}
+for PROXY_DOMAIN in ${PROXY_DOMAINS} ; do
+  certbot certonly --config /usr/local/etc/letsencrypt/letsencrypt.ini --domains ${PROXY_DOMAIN}
+done
 
 exec crond -f
