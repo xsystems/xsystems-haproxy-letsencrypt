@@ -19,4 +19,7 @@ for PROXY_DOMAIN in ${PROXY_DOMAINS} ; do
   certbot certonly --config /usr/local/etc/letsencrypt/letsencrypt.ini --domains ${PROXY_DOMAIN}
 done
 
+. /usr/local/etc/letsencrypt/letsencrypt-hook-pre.sh
+. /usr/local/etc/letsencrypt/letsencrypt-hook-post.sh
+
 exec crond -f
